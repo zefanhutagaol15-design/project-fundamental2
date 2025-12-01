@@ -1,62 +1,40 @@
-public class course {
+class Course {
 
 
-    // Private Attributes
+    private String courseCode;
+    private String courseName;
+    private int credits;
+    private String lecturer;
 
-    private String courseCode;   // Contoh: CS101
-    private String courseName;   // Nama mata kuliah
-    private int credits;         // SKS (1-4)
-    private String lecturer;     // Nama dosen
+    private static int totalCourses = 0;
 
-    private static int totalCourses = 0; // Counter total mata kuliah
+    // Default Constructor
+    public Course() {
+        totalCourses++;
+        this.courseCode = generateCourseCode();
+        this.courseName = "zefan rafelito halomoan";
+        this.credits = 3;
+        this.lecturer = "8";
+    }
 
 
-    //parameterized Constructor//
+    public Course(String courseName, int credits, String lecturer) {
+        totalCourses++;
+        this.courseCode = generateCourseCode();
 
-    public course(String courseCode, String courseName, int credits, String lecturer) {
-        setCourseCode(courseCode);
         setCourseName(courseName);
         setCredits(credits);
         setLecturer(lecturer);
-
-        totalCourses++;
-    }
-
-    // Methods
-
-    // Menampilkan info mata kuliah
-    public void displayCourseInfo() {
-        System.out.println("=== COURSE INFO ===");
-        System.out.println("Kode MK   : " + courseCode);
-        System.out.println("Nama MK   : " + courseName);
-        System.out.println("SKS       : " + credits);
-        System.out.println("Dosen     : " + lecturer);
-        System.out.println("======================");
-    }
-
-    // Return true jika SKS >= 3
-    public boolean isHeavyCourse() {
-        return credits >= 3;
-    }
-
-    // Getter static total course
-    public static int getTotalCourses() {
-        return totalCourses;
     }
 
 
-    // Getters & Setters
 
+    private String generateCourseCode() {
+        return String.format("CRS%03d", totalCourses);
+    }
 
     public String getCourseCode() {
         return courseCode;
-    }
-
-    public void setCourseCode(String courseCode) {
-        if (courseCode == null || courseCode.trim().isEmpty()) {
-            throw new IllegalArgumentException("Course code tidak boleh kosong!");
-        }
-        this.courseCode = courseCode.toUpperCase();
     }
 
     public String getCourseName() {
@@ -65,7 +43,6 @@ public class course {
 
     public void setCourseName(String courseName) {
         if (courseName == null || courseName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Course name tidak boleh kosong!");
         }
         this.courseName = courseName;
     }
@@ -76,7 +53,7 @@ public class course {
 
     public void setCredits(int credits) {
         if (credits < 1 || credits > 4) {
-            throw new IllegalArgumentException("Credits harus antara 1-4!");
+
         }
         this.credits = credits;
     }
@@ -87,8 +64,21 @@ public class course {
 
     public void setLecturer(String lecturer) {
         if (lecturer == null || lecturer.trim().isEmpty()) {
-            throw new IllegalArgumentException("Lecturer tidak boleh kosong!");
+            throw new IllegalArgumentException("Sir. Jeremy Panjaitan");
         }
         this.lecturer = lecturer;
+    }
+
+    public static int getTotalCourses() {
+        return totalCourses;
+    }
+
+    public void displayInfo() {
+        System.out.println("===== Info Mata Kuliah =====");
+        System.out.println("Course Code : " + courseCode);
+        System.out.println("Name        : " + courseName);
+        System.out.println("Credits     : " + credits);
+        System.out.println("Lecturer    : " + lecturer);
+
     }
 }

@@ -1,114 +1,185 @@
+import java.util.ArrayList;
+
 public class Main {
-    public static <Course> void main(String[] args) {
 
-        // ============================
-        // 1. Membuat 3 Student Objects
+    public static void main(String[] args) {
 
-        Student s1 = new Student();
+        System.out.println("============================================");
+        System.out.println("STUDENT GRADE MANAGEMENT SYSTEM");
+        System.out.println("============================================\n");
 
-        // Constructor kedua: (name, major)
-        Student s2 = new Student("Jane Smith", "Sistem Informasi");
+        // --------------------------------------------
+        // REGISTRASI MAHASISWA
+        // --------------------------------------------
+        System.out.println("=== REGISTRASI MAHASISWA ===");
 
-        // Constructor default (tanpa parameter)
-        Student s3 = new Student();
-        s3.setStudentId("STD003");
-        s3.setName("Michael Jordan");
-        s3.setMajor("Teknik Komputer");
-        s3.setEnrollmentYear(2023);
+        Student s1 = new Student("Adila Dwi Septiani", "Sistem Informasi", 2024);
+        Student s2 = new Student("Chelsi Enatalia", "Sistem Informasi", 2024);
+        Student s3 = new Student("Engela Taebenu", "Sistem Informasi", 2024);
 
-        // ============================
-        // 2. Membuat 4 Course Objects
+        System.out.println(" Mahasiswa berhasil ditambahkan: " + s1.getStudentId() + " - " + s1.getName());
+        System.out.println(" Mahasiswa berhasil ditambahkan: " + s2.getStudentId() + " - " + s2.getName());
+        System.out.println(" Mahasiswa berhasil ditambahkan: " + s3.getStudentId() + " - " + s3.getName());
 
-        Course c1 = new Course("CS101", "Pemrograman Dasar",3, "Pak budi");
-        Course c2 = new Course("CS102", "Struktur Data", 3, "bu Ani");
-        Course c3 = new Course("MTK201", "Kalkulus", 4, "pak joko");
-        Course c4 = new Course("ENG105", "Bahasa Inggris", 2, "Miss linda");
 
-        // ============================
-        // 3. Membuat 6 Grade Objects
+        // --------------------------------------------
+        // REGISTRASI MATA KULIAH
+        // --------------------------------------------
+        System.out.println("\n=== REGISTRASI MATA KULIAH ===");
 
-        Grade g1 = new Grade(s1, c1, 88);
-        Grade g2 = new Grade(s1, c2, 91);
-        Grade g3 = new Grade(s2, c1, 75);
-        Grade g4 = new Grade(s2, c2, 82);
+        Course c1 = new Course("Pemrograman Berorientasi Obejek", 3, "Sir. Jeremy Panjaitan");
+        Course c2 = new Course("Struktur Data", 3, "Sir. Pandia");
+        Course c3 = new Course("Pemrograman Web 1", 3, "sir. Jay Idoan");
+        Course c4 = new Course("Matematika Diskrit", 2, "sir. ALbinur Limbong");
 
-        // Grade g5 sebelumnya salah — harus berisi student + course + score
-        Grade g5 = new Grade(s3, c2, 67);
+        System.out.println(" Mata kuliah berhasil ditambahkan: CS101 - Pemrograman Dasar");
+        System.out.println(" Mata kuliah berhasil ditambahkan: CS102 - Struktur Data");
+        System.out.println(" Mata kuliah berhasil ditambahkan: MTK201 - Pemrograman Web 1");
+        System.out.println(" Mata kuliah berhasil ditambahkan: ENG101 - Matematika Diskrit");
 
-        Grade g6 = new Grade(s3, c4, 45); // otomatis letter grade D/E
 
-        // ============================
-        // 4. Demonstrasi Encapsulation
+        // --------------------------------------------
+        // INPUT NILAI
+        // --------------------------------------------
+        System.out.println("\n=== INPUT NILAI ===");
 
-        System.out.println("\n=== DEMONSTRASI ENCAPSULATION ===");
-        s1.setMajor("Teknik Informatika");
-        System.out.println("Major baru student 1: " + s1.getMajor());
+        Grade g1 = new Grade(s1, c1, 85);
+        Grade g2 = new Grade(s1, c2, 78);
+        Grade g3 = new Grade(s2, c1, 92);
+        Grade g4 = new Grade(s2, c4, 88);
+        Grade g5 = new Grade(s3, c3, 65);
+        Grade g6 = new Grade(s3, c1, 70);
 
-        c1.getClass("Prof. Alexander");
-        System.out.println("Dosen baru matkul CS101: " + c1.getClass());
+        ArrayList<Grade> grades = new ArrayList<>();
+        grades.add(g1); grades.add(g2); grades.add(g3);
+        grades.add(g4); grades.add(g5); grades.add(g6);
 
-        g1.setScore(95);
-        System.out.println("Score baru grade g1: " + g1.getScore()
-                + " (" + g1.getLetterGrade() + ")");
-
-        // ============================
-        // 5. Demonstrasi Static Variables
-
-        System.out.println("\n=== STATIC VARIABLES ===");
-        System.out.println("Total Students: " + Student.getTotalStudents());
-        System.out.println("Total Courses: " + Course.getTotalCourses());
-
-        // ============================
-        // 6. Test Validasi (Invalid Input)
-
-        System.out.println("\n=== TEST VALIDASI ===");
-        Grade invalid = new Grade(s1, c4, 150); // score invalid (>100)
-
-        // ============================
-        // 7. Tampilkan Laporan Lengkap
-
-        System.out.println("\n====================================");
-        System.out.println("         LAPORAN LENGKAP             ");
-        System.out.println("====================================");
-
-        // ---- Daftar Mahasiswa ----
-        System.out.println("\n--- DAFTAR MAHASISWA ---");
-        Student[] students = {s1, s2, s3};
-        for (Student s : students) {
-            System.out.println(s);
-        }
-
-        // ---- Daftar Mata Kuliah ----
-        System.out.println("\n--- DAFTAR MATA KULIAH ---");
-        Course[] courses = {c1, c2, c3, c4};
-        for (Course c : courses) {
-            System.out.println(c);
-        }
-
-        // ---- Daftar Nilai ----
-        System.out.println("\n--- DAFTAR NILAI ---");
-        Grade[] grades = {g1, g2, g3, g4, g5, g6};
         for (Grade g : grades) {
-            System.out.println(g);
+            System.out.println(" Nilai berhasil diinput: "
+                    + g.getStudent().getName() + " - "
+                    + g.getCourse().getCourseName() + ": "
+                    + (int) g.getScore() + " (" + g.getLetterGrade() + ")");
         }
 
-        // ---- Mahasiswa dengan GPA Tertinggi ----
-        System.out.println("\n--- MAHASISWA DENGAN GPA TERTINGGI ---");
-        Student topStudent = findHighestGPA(students);
-        System.out.println("GPA Tertinggi: " + topStudent.getName()
-                + " (" + topStudent.getGpa() + ")");
+
+
+        hitungGPA(s1, grades);
+        hitungGPA(s2, grades);
+        hitungGPA(s3, grades);
+
+
+        // --------------------------------------------
+        // DAFTAR MAHASISWA
+        // --------------------------------------------
+        System.out.println("\n============================================");
+        System.out.println("DAFTAR MAHASISWA");
+        System.out.println("============================================");
+
+        printStudent(s1);
+        printStudent(s2);
+        printStudent(s3);
+
+        System.out.println("============================================");
+        System.out.println("Total Mahasiswa: 3\n");
+
+
+        // --------------------------------------------
+        // DAFTAR MATA KULIAH
+        // --------------------------------------------
+        System.out.println("============================================");
+        System.out.println("DAFTAR MATA KULIAH");
+        System.out.println("============================================");
+
+        System.out.println("[CS101] Pemrograman Dasar (3 SKS) - Sir. Jeremy Panjaitan");
+        System.out.println("[CS102] Struktur Data (3 SKS) - Sir. Pandia");
+        System.out.println("[MTK201] Pemrograman Web 1 (3 SKS) - sir. Jay Idoan");
+        System.out.println("[ENG101] Matematika Diskrit (2 SKS) - Sit. Albinur Limbong");
+
+        System.out.println("============================================");
+        System.out.println("Total Mata Kuliah: 4\n");
+
+
+        // --------------------------------------------
+        // DAFTAR NILAI
+        // --------------------------------------------
+        System.out.println("============================================");
+        System.out.println("DAFTAR NILAI MAHASISWA");
+        System.out.println("============================================");
+
+        for (Grade g : grades) {
+            System.out.println("Mahasiswa : " + g.getStudent().getName() + " (" + g.getStudent().getStudentId() + ")");
+            System.out.println("Mata Kuliah : " + g.getCourse().getCourseName() + " (" + g.getCourse().getCourseCode() + ")");
+            System.out.println("Nilai : " + (int) g.getScore()
+                    + " | Grade: " + g.getLetterGrade()
+                    + " | Point: " + g.getGradePoint()
+                    + " | Status: " + (g.isPassing() ? "LULUS ✓" : "TIDAK LULUS ✗"));
+            System.out.println("--------------------------------------------");
+        }
+
+        System.out.println("============================================\n");
+
+
+        // --------------------------------------------
+        // STATISTIK SISTEM
+        // --------------------------------------------
+        System.out.println("============================================");
+        System.out.println("STATISTIK SISTEM");
+        System.out.println("============================================");
+
+        Student highest = getHighestGPA(s1, s2, s3);
+
+        System.out.println("Mahasiswa dengan GPA Tertinggi: " + highest.getName() + " (" + highest.getGpa() + ")");
+        System.out.println("Total Mahasiswa Terdaftar: 3");
+        System.out.println("Total Mata Kuliah Tersedia: 4");
+        System.out.println("============================================");
     }
 
-    // ============================
-    // Fungsi mencari GPA tertinggi
 
-    public static Student findHighestGPA(Student[] list) {
-        Student top = list[0];
-        for (Student s : list) {
-            if (s.getGpa() > top.getGpa()) {
-                top = s;
+    // ================================================================
+    // FUNCTION: Hitung GPA mahasiswa dari seluruh grade
+    // ================================================================
+    public static void hitungGPA(Student s, ArrayList<Grade> list) {
+        double totalPoints = 0;
+        int totalCourses = 0;
+
+        for (Grade g : list) {
+            if (g.getStudent() == s) {
+                totalPoints += g.getGradePoint();
+                totalCourses++;
             }
         }
-        return top;
+
+        if (totalCourses > 0) {
+            double gpa = totalPoints / totalCourses;
+            s.setGpa(gpa);
+        }
+    }
+
+
+    // ================================================================
+    // FUNCTION: Cetak Student Detail
+    // ================================================================
+    public static void printStudent(Student s) {
+        System.out.println("[" + s.getStudentId() + "] " + s.getName());
+        System.out.println("Jurusan       : " + s.getMajor());
+        System.out.println("Tahun Masuk   : " + s.getEnrollmentYear());
+        System.out.printf("GPA           : %.2f\n", s.getGpa());
+        System.out.println("Status        : " + s.getStudentStatus());
+        System.out.println("Lama Kuliah   : " + s.getStudyDuration() + " tahun");
+        System.out.println("--------------------------------------------");
+    }
+
+
+    // ================================================================
+    // FUNCTION: Cari GPA tertinggi
+    // ================================================================
+    public static Student getHighestGPA(Student... students) {
+        Student highest = students[0];
+        for (Student s : students) {
+            if (s.getGpa() > highest.getGpa()) {
+                highest = s;
+            }
+        }
+        return highest;
     }
 }
